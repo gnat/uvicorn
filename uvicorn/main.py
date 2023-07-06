@@ -558,7 +558,7 @@ def run(
         )
         sys.exit(1)
 
-    if config.should_reload:
+    if config.should_reload and config.workers < 2:
         sock = config.bind_socket()
         ChangeReload(config, target=server.run, sockets=[sock]).run()
     elif config.workers > 1:
